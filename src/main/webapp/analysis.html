@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speako- Analytics</title>
+    <link rel="stylesheet" href="styles/analysis.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-container">
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=50&h=50&fit=crop" alt="Logo">
+                <h1>SentiMind</h1>
+            </div>
+            <div class="upload-section">
+                <label for="audio-input" class="upload-btn">
+                    <span class="upload-icon">📁</span>
+                    Upload Audio
+                </label>
+                <input type="file" id="audio-input" accept="audio/*">
+                <button id="analyzeButton" class="analyze-btn">Analyze</button>
+            </div>
+        </div>
+        <div id="status" class="status"></div>
+    </header>
+    <div id ="backContainer">
+        <div id = "backButtonAnalysis">
+            <a href="dashboard.html"><i class="fas fa-arrow-left"></i></a>
+        </div>
+        <h1>Analytics</h1>
+    </div>
+
+    <main class="main-content">
+        <div class="dashboard-grid">
+            <div class="card emotion-chart">
+                <h3>Emotional Journey</h3>
+                <div class="chart-container">
+                    <canvas id="emotionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card confidence-chart">
+                <h3>Speech Confidence Score</h3>
+                <div class="chart-container">
+                    <canvas id="confidenceChart"></canvas>
+                </div>
+                <div id="confidenceScore" class="confidence-score"></div>
+            </div>
+
+            <div class="card transcript-card">
+                <h3>Analyzed Transcript</h3>
+                <div id="result" class="transcript-content"></div>
+            </div>
+        </div>
+    </main>
+</div>
+<audio id="audioPlayer" style="display: none;"></audio>
+<script src="scripts/analysis.js"></script>
+<script src="scripts/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speako-Dashboard</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="Speako_icon.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-container">
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 id="app-logo"><i class="ri-voiceprint-fill"></i> Speako</h1>
+            <div id="userSpecificContainer">
+                <div id="historyButton">
+                    <i class="ri-history-line"></i>
+                    History
+                </div>
+                <div id="userIcon"></div>
+                <div id="userPanel">
+                    <div class="panel-item">
+                        <div class="dark-mode-toggle">
+                            <i class="ri-sun-line"></i>
+                            <label class="switch">
+                                <input type="checkbox" id="darkModeToggle">
+                                <span class="slider round"></span>
+                            </label>
+                            <i class="ri-moon-line"></i>
+                        </div>
+                    </div>
+                    <div id="logoutBtn" style="display: none;">Logout</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <!-- First Row: Recording, Upload, and Details -->
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <h2><i class="ri-mic-line"></i> Record Audio</h2>
+                    <div class="recording-status">
+                        <div id="recordingTimer" class="timer">00:00</div>
+                        <div id="recordingStatus" class="status"></div>
+                    </div>
+                    <div class="record-controls">
+                        <button id="startBtn" class="btn primary">
+                            <i class="ri-mic-line"></i>
+                            <span>Record</span>
+                        </button>
+                        <button id="stopBtn" class="btn danger" disabled>
+                            <i class="ri-stop-line"></i>
+                            <span>Stop</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="feature-card glass-card">
+                    <h2><i class="ri-upload-cloud-line"></i> Upload Audio</h2>
+                    <div class="file-upload-area">
+                        <label for="audioFileInput" class="file-drop-zone">
+                            <i class="ri-file-upload-line"></i>
+                            <span>Click to browse</span>
+                        </label>
+                        <input type="file" id="audioFileInput" accept="audio/*">
+                        <div id="fileName" class="file-name"></div>
+                        <div id="uploadStatus" class="status" style="display: none"></div>
+                    </div>
+                </div>
+
+                <div class="feature-card glass-card" id="audioDetailsBox">
+                    <h2><i class="ri-information-line"></i> Audio Details</h2>
+                    <div id="detailedAudioInfo" class="detailed-info">
+                        No audio selected
+                    </div>
+                    <div id="transcriptionEstimate" class="transcription-estimate"></div>
+                    <div id="uploadProgressContainer" style="display: none;">
+                        <progress id="uploadProgress" value="0" max="100"></progress>
+                        <span id="uploadProgressText">0%</span>
+                    </div>
+                    <a id="downloadLink" class="btn success" style="display:none;">
+                        <i class="ri-download-line"></i>
+                        <span>Download</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Second Row: Audio Player -->
+            <div class="audio-player-container glass-card">
+                <h2><i class="ri-volume-up-line"></i> Audio Player</h2>
+                <div class="waveform-container">
+                    <div id="waveform"></div>
+                    <div class="player-controls">
+                        <button id="playBtn" class="icon-btn large" disabled>
+                            <i class="ri-play-fill"></i>
+                        </button>
+                        <div class="time-display">
+                            <span id="currentTime">00:00</span>
+                            <span>/</span>
+                            <span id="totalDuration">00:00</span>
+                        </div>
+                        <div class="volume-control">
+                            <i class="ri-volume-up-line"></i>
+                            <input type="range" id="volume" min="0" max="100" value="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Row: Results -->
+            <div class="results-grid">
+                <!-- Combined Transcription and Grammar Section -->
+                <div class="result-card glass-card">
+                    <div class="result-header">
+                        <h2 id="toggleChangeHeader">Transcription</h2>
+                        <div class="result-actions">
+                            <div class="toggle-container">
+<!--                                <span>Grammar</span>-->
+                                <label class="switch">
+                                    <input type="checkbox" id="grammarToggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <button id="expandBtn" class="icon-btn" title="Expand">
+                                <i class="ri-fullscreen-line"></i>
+                            </button>
+                            <button id="copyBtn" class="icon-btn" title="Copy">
+<!--                                <i class="ri-clipboard-line"></i>-->
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="result-content">
+                        <textarea id="transcription" placeholder="Transcription will appear here..." readonly></textarea>
+                        <div id="GrammarArea" style="display: none;"></div>
+                    </div>
+                    <button id="sendBtn" class="btn accent" disabled>
+                        <i class="ri-file-text-line"></i>
+                        <span>Transcribe</span>
+                    </button>
+                </div>
+
+                <!-- Empty Grammar Check Section (for future use) -->
+                <div class="result-card glass-card">
+                    <div class="result-header">
+                        <h2 id="grammarChangeHeader">Insights</h2>
+                    </div>
+                    <div class="result-content">
+                        <!-- Words Per Minute Container -->
+                        <div class="metric-container">
+                            <div class="metric-header">
+                                <i class="ri-speed-line"></i>
+                                <h3>Words Per Minute</h3>
+                            </div>
+                            <div class="metric-value" id="wpmValue">0</div>
+                            <div class="metric-description">Speaking pace measurement</div>
+                        </div>
+
+                        <!-- Stuck Pause Container -->
+                        <div class="metric-container">
+                            <div class="metric-header">
+                                <i class="ri-time-line"></i>
+                                <h3>Stuck Pauses</h3>
+                            </div>
+                            <div class="metric-value" id="pauseCount">0</div>
+                            <div class="metric-description">Moments of hesitation</div>
+                        </div>
+
+                        <!-- Filler Words Container -->
+                        <div class="metric-container">
+                            <div class="metric-header">
+                                <i class="ri-chat-quote-line"></i>
+                                <h3>Filler Words</h3>
+                            </div>
+                            <div class="metric-value" id="fillerCount">0</div>
+                            <div class="metric-description">Common filler word usage</div>
+                        </div>
+
+                        <!-- Offensive Words Container -->
+                        <div class="metric-container" id="grmmarCount">
+                            <div class="metric-header">
+                                <i class="ri-error-warning-line"></i>
+<!--                                <i class="ri-file-text-line"></i>-->
+                                <h3>Grammatical Errors</h3>
+                            </div>
+                            <div class="metric-value" id="grammarErrorCount">0</div>
+                            <div class="metric-description">Total count of grammatical mistakes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sentiment Analysis Section -->
+                <div class="result-card glass-card">
+                    <div class="result-header">
+                        <h2><i class="ri-emotion-line"></i>Confidence Analysis</h2>
+                        <div class="result-actions">
+                            <button id="speechAnalysisOpen" class="icon-btn" title="Open">
+                                <a href="/SAV3/index.html"></a>
+                                <i class="ri-arrow-right-up-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="result-content">
+                        <p class="coming-soon" id="confidenceCheckBox">Provide an audio file to analyse.</p>
+                        <div class="chart-container">
+                            <canvas id="confidenceChart"></canvas>
+                        </div>
+                        <div id="confidenceScore" class="confidence-score"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for expanded transcription -->
+    <div id="transcriptionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="transcriptionExpandBox">Full Transcription</h2>
+                <button class="icon-btn close-modal">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div id="modalTranscription" readonly></div>
+        </div>
+    </div>
+
+    <div id="historyModal" class="modal">
+        <div class="modal-content history-content">
+            <div class="modal-header">
+                <h2><i class="ri-history-line"></i> Transcription History</h2>
+                <button class="icon-btn close-history">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="history-search">
+                <div class="search-container">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="historySearch" placeholder="Search transcriptions...">
+                </div>
+                <div class="sort-container">
+                    <select id="historySort" title="Sort options">
+                        <option value="newest" title="Newest first"></option>
+                        <option value="oldest" title="Oldest first"></option>
+                        <option value="nameAZ" title="A to Z"></option>
+                        <option value="nameZA" title="Z to A"></option>
+                    </select>
+                    <i class="ri-sort-desc"></i>
+                </div>
+            </div>
+            <div id="historyList" class="history-list">
+                <!-- History items will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for expanded grammar check removed since it's now combined -->
+    <div id="pauseDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="ri-time-line"></i> Stuck Pause Details</h2>
+                <button class="icon-btn close-pause-modal">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="pause-details-content">
+                <table id="pauseDetailsTable">
+                    <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="module" src="scripts/app.js"></script>
+<script src="scripts/auth.js"></script>
+</body>
+</html>

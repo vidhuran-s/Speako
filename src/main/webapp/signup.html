@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speako- Sign-up</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/reverseAuth.js"></script>
+    <script defer src="scripts/script.js"></script>
+</head>
+<body>
+<div class="login-container">
+    <div class="welcome-section">
+        <h1>Welcome to Speako</h1>
+        <p>Speako is a tool for public speakers, analyzing tone, pace, and clarity. It provides real-time feedback, tracking pitch and engagement to help users enhance their delivery and captivate audiences effortlessly.</p>
+    </div>
+    <div class="login-form">
+        <h2>Sign up</h2>
+        <form id="signupForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <div id="passwordMessage"></div>
+
+            <!--            <label for="confirmPassword">Confirm Password</label>-->
+            <!--            <input type="password" id="confirmPassword" name="confirmPassword" required>-->
+
+            <button type="submit">Sign up</button>
+        </form>
+        <p id="signupMessage"></p> <!-- For signup messages -->
+        <p>Already have an account? <a href="index.html">Sign in</a></p>
+    </div>
+</div>
+</body>
+</html>

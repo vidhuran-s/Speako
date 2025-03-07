@@ -1,0 +1,219 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: linear-gradient(45deg, #4a00e0, #8e2de2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.welcome-section {
+    flex: 1;
+    padding: 40px;
+    background: linear-gradient(45deg, #4a00e0, #8e2de2);
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.welcome-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.welcome-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Add the abstract pattern (simplified) */
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzAwMDAwMCIgb3BhY2l0eT0iMC4xIi8+PHBhdGggZD0iTTUwIDUwIEMzMCAzMCA3MCAzMCA1MCA1MCBDNzAgNzAgMzAgNzAgNTAgNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmOTkwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+') no-repeat center;
+    background-size: cover;
+    opacity: 0.3;
+}
+
+.login-form {
+    flex: 1;
+    padding: 40px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4a00e0;
+    margin-bottom: 30px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+    border-color: #4a00e0;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #4a00e0, #8e2de2);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-form button:hover {
+    background: linear-gradient(45deg, #3a00b0, #7e1dc2);
+}
+
+.login-form .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.login-form .remember-forgot label {
+    display: flex;
+    align-items: center;
+}
+
+.login-form .remember-forgot input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.login-form .remember-forgot a {
+    color: #4a00e0;
+    text-decoration: none;
+}
+
+.login-form .remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.login-form p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 20px;
+}
+
+.login-form p a {
+    color: #4a00e0;
+    text-decoration: none;
+}
+
+.login-form p a:hover {
+    text-decoration: underline;
+}
+
+/* Message paragraphs (e.g., loginMessage, signupMessage) */
+.login-form #loginMessage,
+.login-form #signupMessage {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+#zohoLogin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 20px;
+    width: 100px;
+    height:  fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    background: #384560;
+}
+
+#zohoLogin img {
+    width: 30px;
+    height: 30px;
+}
+
+#passwordMessage {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .welcome-section, .login-form {
+        flex: none;
+        width: 100%;
+    }
+
+    .welcome-section {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .welcome-section h1 {
+        font-size: 2rem;
+    }
+
+    .login-form {
+        padding: 20px;
+    }
+}

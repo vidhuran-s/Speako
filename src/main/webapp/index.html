@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speako-Sign-in</title>
+    <link rel="icon" type="image/x-icon" href="Speako_icon.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/reverseAuth.js"></script>
+    <script defer src="scripts/script.js"></script>
+</head>
+<body>
+<div class="login-container">
+    <div class="welcome-section">
+        <h1>Welcome to Speako</h1>
+        <p>Speako is a tool for public speakers, analyzing tone, pace, and clarity. It provides real-time feedback, tracking pitch and engagement to help users enhance their delivery and captivate audiences effortlessly.</p>
+    </div>
+    <div class="login-form">
+        <h2>Sign in</h2>
+        <form id="loginForm">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="remember-forgot">
+                <a href="forgot-password.html">Forgot password?</a>
+            </div>
+
+            <button type="submit">Sign in</button>
+        </form>
+        <p id="loginMessage"></p> <!-- Restored loginMessage paragraph -->
+        <p>or sign in with:</p>
+        <button id="zohoLogin"> <img src="images/zoho_favicon-withoutbg.png">zoho</button>
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+    </div>
+</div>
+</body>
+</html>
