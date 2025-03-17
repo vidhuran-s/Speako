@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.List;
 
 public class TranscriptionService {
-    private static final String DEEPGRAM_API_KEY = "c5e60167622841793ef1d1b7975bb60c28f4b144";
+    private static final String DEEPGRAM_API_KEY = "api_key";
 
     public InputStream extractAudioInputStream(HttpServletRequest request) throws Exception {
         // the request is multipart/form-data
