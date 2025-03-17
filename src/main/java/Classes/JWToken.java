@@ -14,7 +14,7 @@ import java.util.Date;
 public class JWToken {
     
     // Secret Key for Signing JWT (Keep it Secure & Long Enough)
-    private static final String SECRET = "6+yluJ8zWVxjPbLNFJ7VsaRPJpA70DmHYrYINZFiKWc=";
+    private static final String SECRET = "secret_key";
     private static final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET));
 
     private static JWToken jwtUtil = null;
