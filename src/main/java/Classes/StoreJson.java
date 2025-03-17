@@ -37,7 +37,7 @@ public class StoreJson {
             pstmt.setLong(1, fileId);
             pstmt.setLong(2, userId);
             pstmt.setString(3, fileName);
-            pstmt.setString(4, jsonData.toString()); // Store JSON as a string
+            pstmt.setString(4, jsonData.toString());
 
             int rowsInserted = pstmt.executeUpdate();
             return rowsInserted > 0;

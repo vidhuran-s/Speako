@@ -1307,12 +1307,11 @@ function findGapsWithFillers(transcriptionJson, threshold) {
                         (wordStart <= endTime && wordEnd >= nextStartTime)) {
                         if (fillerWords.includes(rawWord)) {
                             hasFillers = true;
-                            break; // Exit loop once we find a filler word
+                            break;
                         }
                     }
                 }
 
-                // Only include gaps that have filler words nearby
                 if (hasFillers) {
                     const gap = {
                         start: endTime,

@@ -4,10 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutBtn = document.getElementById("logoutBtn");
 
     const zohoLoginButton = document.getElementById("zohoLogin");
-    // const statusMsg = document.getElementById("status");
 
 
-    // ✅ Signup Event Listener
+    // Signup Event Listener
     if (signupForm) {
         setupSignupPasswordValidation();
         signupForm.addEventListener("submit", function (e) {
@@ -38,12 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ✅ Login Event Listener
+    // Login Event Listener
     if (loginForm) {
         loginForm.addEventListener("submit", function (e) {
             e.preventDefault();
             const loginMessage = document.getElementById("loginMessage");
-            loginMessage.innerText = ""; // Clear previous messages
+            loginMessage.innerText = "";
 
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
@@ -92,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ✅ Logout Event Listener (Calls LogoutServlet)
+    // Logout Event Listener
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function () {
             fetch("LogoutServlet", { method: "POST", credentials: "include" })
@@ -111,8 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
-// Password configuration object
 const passwordConfig = {
     minLength: 8,
     patterns: {
@@ -123,15 +120,12 @@ const passwordConfig = {
     }
 };
 
-// Password validation method
 function validatePassword(password) {
-    // Check minimum length
     if (password.length < passwordConfig.minLength) {
         return createValidationResult(false,
             `Password must be at least ${passwordConfig.minLength} characters long`);
     }
 
-    // Check each pattern requirement
     for (const [key, pattern] of Object.entries(passwordConfig.patterns)) {
         if (!pattern.regex.test(password)) {
             return createValidationResult(false,
@@ -175,11 +169,9 @@ function setupSignupPasswordValidation() {
         passwordInput.addEventListener("input", function() {
             const result = validatePassword(this.value);
 
-            // Update message and styling
             passwordMessage.textContent = result.message;
             passwordMessage.style.color = result.isValid ? "#28a745" : "#dc3545";
 
-            // Enable/disable signup button based on password validity
             signupButton.disabled = !result.isValid;
             signupButton.style.opacity = result.isValid ? "1" : "0.6";
         });

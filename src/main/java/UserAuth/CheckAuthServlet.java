@@ -20,12 +20,12 @@ public class CheckAuthServlet extends HttpServlet {
         CheckAuthService.AuthResult authResult = authService.checkAuthentication(request);
 
         JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("loggedIn", authResult.isLoggedIn());
+        jsonResponse.put("loggedIn", authResult.loggedIn());
 
-        if (authResult.isLoggedIn()) {
-            jsonResponse.put("email", authResult.getEmail());
-            jsonResponse.put("userId", authResult.getUserId());
-            jsonResponse.put("name", authResult.getName());
+        if (authResult.loggedIn()) {
+            jsonResponse.put("email", authResult.email());
+            jsonResponse.put("userId", authResult.userId());
+            jsonResponse.put("name", authResult.name());
         }
 
         response.getWriter().write(jsonResponse.toString());

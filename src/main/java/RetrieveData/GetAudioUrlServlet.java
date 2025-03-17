@@ -17,7 +17,7 @@ public class GetAudioUrlServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            // Get audio URL from database
+            // Get audio URL from database using file-ID
             String audioUrl = UserDAO.getAudioUrlByFileId(fileId);
 
             if (audioUrl != null) {

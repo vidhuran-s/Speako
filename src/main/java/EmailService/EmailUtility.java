@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class EmailUtility {
     public static void sendEmail(String toEmail, String subject, String messageText) throws MessagingException {
-        final String fromEmail = "vidhuran2024@gmail.com"; // Replace with your email
+        final String fromEmail = "vidhuran2024@gmail.com";
         final String password = "wpur ulaa rbjy chun"; // Use an App Password if using Gmail
 
         Properties props = new Properties();
@@ -16,7 +16,6 @@ public class EmailUtility {
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
-//        props.put("mail.smtp.starttls.enable", "true");
 
         Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {

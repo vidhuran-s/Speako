@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class EmailUtil {
     public static void sendEmail(String to, String subject, String body) {
-        final String fromEmail = "vidhuran2024@gmail.com"; // Your email
+        final String fromEmail = "vidhuran2024@gmail.com";
         final String password = "wpur ulaa rbjy chun";   // App password
 
         Properties props = new Properties();

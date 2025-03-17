@@ -13,25 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
             tokenInput.value = token;
         } else {
             alert("Invalid or missing token.");
-            window.location.href = "index.html"; // Redirect to login if no token
+            window.location.href = "index.html";
             return;
         }
 
-        // Handle form submission
         resetPasswordForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            // Get input values
             const newPassword = resetPasswordForm.querySelector("input[name='password']").value.trim();
             const submitButton = resetPasswordForm.querySelector("button");
 
-            // Validate password length
             if (newPassword.length < 6) {
                 alert("Password must be at least 6 characters long.");
                 return;
             }
 
-            // Disable button to prevent multiple submissions
             submitButton.disabled = true;
             submitButton.innerText = "Resetting...";
 
@@ -41,14 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
 			    headers: { "Content-Type": "application/x-www-form-urlencoded" },
 			    body: new URLSearchParams({ token, password: newPassword })
 			})
-            .then(response => response.text()) // Read response as text
+            .then(response => response.text())
             .then(text => {
                 console.log("Response:", text);
                 try {
                     const data = JSON.parse(text);
-                    alert(data.message); // Show success/error message
+                    alert(data.message);
                     if (data.success) {
-                        window.location.href = "index.html"; // Redirect to login after success
+                        window.location.href = "index.html";
                     }
                 } catch (error) {
                     console.error("Invalid JSON response:", error);
@@ -60,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Failed to reset password. Please try again.");
             })
             .finally(() => {
-                // Re-enable button after request is complete
                 submitButton.disabled = false;
                 submitButton.innerText = "Reset Password";
             });

@@ -11,14 +11,14 @@ import java.util.List;
 
 public class UserDAO {
 
-    // Check if a user exists by their unique ID
+    // Check a user exists (unique ID)
     public boolean userExists(long userId) {
         String sql = "SELECT id FROM users WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setLong(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next(); // ✅ If a row is found, user exists
+                return rs.next();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class UserDAO {
                 try (ResultSet rs = ps.executeQuery()) {
                     System.out.println("Getting into Rset");
 
-                    if (!rs.isBeforeFirst()) { // No data found
+                    if (!rs.isBeforeFirst()) {
                         System.out.println("No user found with this email: " + email);
                         return null;
                     }
@@ -147,7 +147,7 @@ public class UserDAO {
         return exists;
     }
 
-    // Insert new user into the database (Assumes password is already hashed)
+    // Insert new user into the database
     public boolean insertUser(String userId, String name, String email, String hashedPassword) {
         boolean isInserted = false;
 
@@ -157,7 +157,7 @@ public class UserDAO {
                 ps.setString(1, userId);
                 ps.setString(2, name);
                 ps.setString(3, email);
-                ps.setString(4, hashedPassword); // ✅ Directly store hashed password
+                ps.setString(4, hashedPassword);
 
                 int rowsAffected = ps.executeUpdate();
                 isInserted = rowsAffected > 0;
@@ -231,8 +231,8 @@ public class UserDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     User user = new User();
-                    user.setUserId(rs.getString("id")); // This was missing
-                    user.setName(rs.getString("name")); // This had syntax error
+                    user.setUserId(rs.getString("id"));
+                    user.setName(rs.getString("name"));
                     user.setEmail(rs.getString("email"));
                     user.setPassword(rs.getString("password"));
                     return user;
@@ -304,7 +304,7 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return jsonArray;  // Return as a JSON array
+        return jsonArray;
     }
 
     public static String getAudioUrlByFileId(String fileId) {
@@ -411,7 +411,7 @@ public class UserDAO {
             }
 
             System.out.println("User doesn't exist with provided mail");
-            return false; // Returns true if user exists
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;

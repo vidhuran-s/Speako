@@ -16,8 +16,7 @@ public class PasswordResetService {
         try (Connection conn = DBConnection.getConnection()) {
 
             // Verify token
-            PreparedStatement stmt = conn.prepareStatement(
-                    "SELECT user_id, token_expiry FROM password_reset WHERE reset_token = ? AND token_expiry > NOW()");
+            PreparedStatement stmt = conn.prepareStatement("SELECT user_id, token_expiry FROM password_reset WHERE reset_token = ? AND token_expiry > NOW()");
             stmt.setString(1, token);
             ResultSet rs = stmt.executeQuery();
 
@@ -25,8 +24,7 @@ public class PasswordResetService {
                 long userId = rs.getLong("user_id");
 
                 // Update password in users table
-                PreparedStatement updateStmt = conn.prepareStatement(
-                        "UPDATE users SET password = ? WHERE id = ?");
+                PreparedStatement updateStmt = conn.prepareStatement("UPDATE users SET password = ? WHERE id = ?");
                 updateStmt.setString(1, hashedPassword);
                 updateStmt.setLong(2, userId);
                 int rowsAffected = updateStmt.executeUpdate();
@@ -37,12 +35,12 @@ public class PasswordResetService {
                     deleteStmt.setLong(1, userId);
                     deleteStmt.executeUpdate();
 
-                    return true;  // Success
+                    return true;
                 } else {
-                    return false; // Failed to update password
+                    return false;
                 }
             } else {
-                return false; // Invalid or expired token
+                return false;
             }
         }
     }

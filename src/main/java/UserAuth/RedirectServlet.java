@@ -12,7 +12,7 @@ public class RedirectServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String clientId = "1000.I7YZUW54IDVJSU578WTKCBS2IWCL6U";
-        String redirectURI = "https://rndov-139-167-67-125.a.free.pinggy.link/SpeekO/auth-servlet";
+        String redirectURI = "https://rndov-139-167-67-125.a.free.pinggy.link/SpeakO/auth-servlet";
         String scope = "email,ZohoCliq.Users.READ";
 
         String authUrl = "https://accounts.zoho.com/oauth/v2/auth?client_id=" + clientId
@@ -27,6 +27,3 @@ public class RedirectServlet extends HttpServlet {
         response.sendRedirect(authUrl);
     }
 }
-
-
-//https://accounts.zoho.com/oauth/v2/auth?client_id=1000.I7YZUW54IDVJSU578WTKCBS2IWCL6U&redirect_uri=https://rndov-139-167-67-125.a.free.pinggy.link/SpeekO/auth-servlet&scope=email,ZohoCliq.Users.READ&response_type=code

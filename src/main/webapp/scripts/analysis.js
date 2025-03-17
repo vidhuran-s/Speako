@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const segmentDiv = document.createElement('div');
             segmentDiv.classList.add('segment');
 
-            // Get first and last word indexes from the segment metadata
+            // Get first and last word index from the segment
             const startIdx = segment.start_word;
             const endIdx = segment.end_word;
 
@@ -348,10 +348,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     seg.classList.remove('active-segment');
                 });
 
-                // Add active class to clicked segment
                 segmentDiv.classList.add('active-segment');
 
-                // Play the segment audio
                 playSegment(startTime, endTime);
             });
 
@@ -372,7 +370,6 @@ function initializeTheme() {
     document.documentElement.setAttribute('data-theme', savedTheme);
 }
 
-// Add this helper function for time formatting
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.round(seconds % 60);
@@ -396,11 +393,9 @@ function playSegment(startTime, endTime) {
         audioPlayer.pause();
     }
 
-    // Convert MM:SS to seconds
     const start = startTime.split(':').reduce((acc, curr) => acc * 60 + parseInt(curr), 0);
     const end = endTime.split(':').reduce((acc, curr) => acc * 60 + parseInt(curr), 0);
 
-    // Set start time and play
     audioPlayer.currentTime = start;
     audioPlayer.play();
 
@@ -419,11 +414,9 @@ function playSegment(startTime, endTime) {
 }
 
 document.addEventListener('click', (event) => {
-    // Check if click target is not inside a segment
     const isSegmentClick = event.target.closest('.segment');
     if (!isSegmentClick && audioPlayer && !audioPlayer.paused) {
         audioPlayer.pause();
-        // Remove active class from all segments
         document.querySelectorAll('.segment').forEach(seg => {
             seg.classList.remove('active-segment');
         });

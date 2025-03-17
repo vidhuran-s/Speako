@@ -26,7 +26,7 @@ public class TranscriptionService {
 
         for (FileItem item : formItems) {
             if (!item.isFormField() && "audio".equals(item.getFieldName())) {
-                return item.getInputStream(); // Return the audio input stream
+                return item.getInputStream();
             }
         }
         return null;
@@ -64,7 +64,7 @@ public class TranscriptionService {
 
     public boolean saveTranscription(JSONObject jsonObject) {
         long fileId = System.nanoTime();
-        long userId = System.nanoTime(); // Replace with actual user ID
+        long userId = System.nanoTime();
 
         jsonObject.put("file_id", fileId);
         jsonObject.put("user_id", userId);
@@ -74,7 +74,7 @@ public class TranscriptionService {
 
     public boolean saveTranscription(JSONObject jsonObject, String userId) {
         long fileId = System.nanoTime();
-        long userID = Long.parseLong(userId); // Replace with actual user ID
+        long userID = Long.parseLong(userId);
 
         jsonObject.put("file_id", fileId);
         jsonObject.put("user_id", userID);
@@ -84,7 +84,7 @@ public class TranscriptionService {
 
     public boolean saveTranscription(JSONObject jsonObject, String userId, String fileName) {
         long fileId = System.nanoTime();
-        long userID = Long.parseLong(userId); // Replace with actual user ID
+        long userID = Long.parseLong(userId);
         System.out.println("File Name: " + fileName);
 
         jsonObject.put("file_id", fileId);
@@ -94,11 +94,6 @@ public class TranscriptionService {
     }
 
     public boolean saveTranscription(JSONObject jsonObject, long userId, long fileId, String fileName) {
-//        System.out.println("File Name: " + fileName);
-//        System.out.println("File ID: " + fileId);
-//        System.out.println("User ID: " + userId);
-//        System.out.println("JSON Object: " + jsonObject.toString());
-
         jsonObject.put("file_id", fileId);
         jsonObject.put("user_id", userId);
         jsonObject.put("file_name", fileName);

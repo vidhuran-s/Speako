@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 //            authCookie.setHttpOnly(true);
 //            authCookie.setSecure(true); // Ensure secure transmission (HTTPS required)
             authCookie.setPath("/");
-            authCookie.setMaxAge(3 * 24 * 60 * 60); // 7 days expiration
+            authCookie.setMaxAge(3 * 24 * 60 * 60);
             response.addCookie(authCookie);
 
             // Store user session

@@ -1,10 +1,6 @@
 function checkRevAuthentication() {
     document.addEventListener("DOMContentLoaded", function () {
         let token1 = getCookie("auth_token");
-        // let token2 = getCookie("SESSION_ID");
-        // if(token2){
-        //     window.location.href = "dashboard.html";
-        // }
         if (token1) {
             // Validate token with server
             fetch("CheckAuthServlet", {
@@ -26,9 +22,6 @@ function checkRevAuthentication() {
                 });
             });
         }
-        // else{
-        //     window.location.href = "index.html";
-        // }
     });
 }
     function getCookie(name) {

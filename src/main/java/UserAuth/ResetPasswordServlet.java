@@ -23,7 +23,6 @@ public class ResetPasswordServlet extends HttpServlet {
         JSONObject jsonResponse = new JSONObject();
 
         try {
-            // Call service layer for business logic
             boolean isResetSuccessful = passwordResetService.resetPassword(token, newPassword);
 
             if (isResetSuccessful) {

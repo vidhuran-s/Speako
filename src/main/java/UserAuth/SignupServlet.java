@@ -17,13 +17,11 @@ public class SignupServlet extends HttpServlet {
 
         JSONObject jsonResponse = new JSONObject();
 
-        // Get user input from request parameters
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         try {
-            // Call the service layer for signup logic
             boolean isSignupSuccessful = signupService.registerUser(name, email, password);
 
             if (isSignupSuccessful) {

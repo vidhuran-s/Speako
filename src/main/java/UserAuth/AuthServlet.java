@@ -24,7 +24,7 @@ public class AuthServlet extends HttpServlet {
 
     private static String client_id = "1000.I7YZUW54IDVJSU578WTKCBS2IWCL6U";
     private static String client_secret = "7376d3f57d77c832d6018ba7a1e9852befecc1589d";
-    private static String redirect_URI = "http://localhost:8080//SpeekO/auth-servlet";
+    private static String redirect_URI = "http://localhost:8080//SpeakO/auth-servlet";
     private static String token_URL = "https://accounts.zoho.com/oauth/v2/token";
 
 
@@ -313,7 +313,7 @@ public class AuthServlet extends HttpServlet {
             System.out.println("user json created: "+json.toString());
 
             System.out.println("creating url connection with getsessionuser");
-            URL url4 = new URL("http://localhost:8080/SpeekO/get-session-user");
+            URL url4 = new URL("http://localhost:8080/SpeakO/get-session-user");
             HttpURLConnection conn4 = (HttpURLConnection) url4.openConnection();
             conn4.setRequestMethod("POST");
             conn4.setDoOutput(true);

@@ -34,7 +34,7 @@ public class GetSessionUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            System.out.println("Inside doPost of GetSessionUser 🚀");
+            System.out.println("Inside doPost of GetSessionUser");
 
             // Read JSON object from request
             StringBuilder jsonBuffer = new StringBuilder();
@@ -59,8 +59,8 @@ public class GetSessionUser extends HttpServlet {
             resp.getWriter().write("{\"message\":\"User session stored successfully\"}");
 
         } catch (Exception e) {
-            System.err.println("Error in doPost of GetSessionUser 🚨");
-            e.printStackTrace();  // Print the full stack trace
+            System.err.println("Error in doPost of GetSessionUser");
+            e.printStackTrace();
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             resp.getWriter().write("{\"error\":\"" + e.getMessage() + "\"}");
         }

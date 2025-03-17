@@ -5,11 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
         forgotPasswordForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            // Get the email input value
             const email = forgotPasswordForm.querySelector("input[name='email']").value.trim();
             const submitButton = forgotPasswordForm.querySelector("button");
 
-            // Disable button to prevent multiple clicks
             submitButton.disabled = true;
             submitButton.innerText = "Sending...";
 
@@ -17,16 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
             fetch("ForgotPasswordServlet", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email }) // Ensure the email is in the body
+                body: JSON.stringify({ email })
             })
-            .then(response => response.text()) // Read response as text
+            .then(response => response.text())
             .then(text => {
                 console.log("Response:", text);
                 try {
-                    const data = JSON.parse(text); // Attempt to parse JSON
-                    alert(data.message); // Show success/error message
+                    const data = JSON.parse(text);
+                    alert(data.message);
                 } catch (error) {
-                    // If response is not JSON, assume it's a plain text error message
                     alert(text);
                 }
             })

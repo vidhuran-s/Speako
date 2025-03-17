@@ -14,7 +14,6 @@ public class VerificationService {
         String emailSql = "SELECT email FROM email_verification WHERE token = ?";
 
         try (Connection conn = DBConnection.getConnection()) {
-            // First get the email
             String email = null;
             try (PreparedStatement stmt = conn.prepareStatement(emailSql)) {
                 stmt.setString(1, token);
@@ -24,7 +23,6 @@ public class VerificationService {
                 }
             }
 
-            // Then verify the email
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, token);
                 int updated = stmt.executeUpdate();

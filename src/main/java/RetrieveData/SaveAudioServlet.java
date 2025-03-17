@@ -18,10 +18,8 @@ public class SaveAudioServlet extends HttpServlet {
         System.out.println("User ID from SaveAudioServlet: " + userId);
         System.out.println("File name from SaveAudioServlet: " + fileName);
         System.out.println("Audio link from SaveAudioServlet: " + audioLink);
-        // Save to the database
         UserDAO.saveAudioFile(userId, fileName, audioLink);
 
-        // Send response
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         out.print("{\"message\": \"Audio saved successfully\"}");

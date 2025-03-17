@@ -16,7 +16,7 @@ public class SignupService {
             throw new IllegalArgumentException("All fields are required.");
         }
 
-        // Check if email already exists in DB
+        // Check email already exists
         if (userDAO.isEmailExists(email)) {
             throw new IllegalArgumentException("Email already registered.");
         }
@@ -27,7 +27,6 @@ public class SignupService {
         // Hash the password using BCrypt
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
 
-        // Save user to DB
         boolean isInserted = userDAO.insertUser(userId, name, email, hashedPassword);
 
         if (isInserted) {
@@ -40,10 +39,9 @@ public class SignupService {
             String subject = "Email Verification";
             String body = "Click the link to verify your email: " + verificationLink;
             EmailUtil.sendEmail(email, subject, body);
-
             return true;
         } else {
-            return false;  // Signup failed
+            return false;
         }
     }
 }

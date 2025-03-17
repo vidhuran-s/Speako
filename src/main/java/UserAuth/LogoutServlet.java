@@ -14,14 +14,6 @@ public class LogoutServlet extends HttpServlet {
             session.invalidate();
         }
 
-//        // Remove auth_token cookie
-//        Cookie authCookie = new Cookie("auth_token", "");
-//        authCookie.setPath("/");
-//        authCookie.setMaxAge(0); // Expire immediately
-//        response.addCookie(authCookie);
-//
-//        response.setStatus(HttpServletResponse.SC_OK);
-
 
         System.out.println("\n\ndeleting cookies\n\n");
         for (Cookie cookie : request.getCookies()){
